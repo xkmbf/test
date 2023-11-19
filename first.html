@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        .container {
+            display: flex;
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            background-color: gray;
+        }
+
+        .item {
+            width: 0;
+            height: 100%;
+            transition: all 0.5s;
+        }
+
+        .active {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item active" style="background-color: red;"></div>
+        <div class="item" style="background-color: yellow;"></div>
+        <div class="item" style="background-color: green;"></div>
+        <div class="item" style="background-color: blue;"></div>
+        <div class="item" style="background-color: brown;"></div>
+        <div class="item" style="background-color: skyblue;"></div>
+        <div class="item" style="background-color: pink;"></div>
+        <div class="item" style="background-color: purple;"></div>
+        <div class="item" style="background-color: deeppink;"></div>
+        <div class="item" style="background-color: orange;"></div>
+    </div>
+    <button class="last">上一张</button>
+    <button class="next">下一张</button>
+</body>
+<script>
+    let active = 0;
+    const items = document.querySelectorAll('.item');
+    function toSlide(index){
+        index<0?index=items.length-1:null;
+        index>items.length-1?index=0:null;
+        items[index].classList.add('active');
+        items[active].classList.remove('active');
+        active = index;
+        console.log(active);
+    }
+    btn = document.querySelectorAll('button');
+    const btnLast = btn[0];
+    const btnNext = btn[1];
+    // console.log(btnNext);
+    btnLast.addEventListener(
+        'click',
+        function () {
+            toSlide(active-1)
+        }
+    );
+    btnNext.addEventListener(
+        'click',
+        function () {
+            toSlide(active+1)
+        });
+
+</script>
+</html>
